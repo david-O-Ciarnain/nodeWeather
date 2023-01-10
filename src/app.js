@@ -1,16 +1,19 @@
 const path = require("path");
 const express = require("express");
+const hbs = require("hbs")
 
 const app = express();
 const PORT = 3000;
 
 //Define paths for Express config
 const publicPath = path.join(__dirname, "../public/");
-const viewsPath = path.join(__dirname,"../templates")
+const viewsPath = path.join(__dirname,"../templates/views")
+const partialsPath = path.join(__dirname,"../templates/partials")
 
 //Setup handlebars engine and views loaction
 app.set("view engine", "hbs");
 app.set("views",viewsPath)
+hbs.registerPartials(partialsPath)
 
 //Setup static directory to serve
 app.use(express.static(publicPath));
@@ -18,14 +21,14 @@ app.use(express.static(publicPath));
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather App",
-    name: "Sven",
+    name: "Sven Svensson",
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About me",
-    name: "Sven",
+    name: "Sven Svensson",
   });
 });
 
@@ -33,6 +36,7 @@ app.get("/help", (req, res) => {
   res.render("help", {
     title: "HELP PAGE",
     message: "This should be helpful or is it? ;)",
+    name:"Sven Svensson"
   });
 });
 
