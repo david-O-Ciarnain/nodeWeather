@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
+const forecast = require("./util/forecast");
+const gecode = require("./util/gecode");
 
 const app = express();
 const PORT = 3000;
@@ -18,7 +20,7 @@ hbs.registerPartials(partialsPath);
 //Setup static directory to serve
 app.use(express.static(publicPath));
 
-const name = "Sven Svensson"
+const name = "Sven Svensson";
 
 app.get("", (req, res) => {
   res.render("index", {
@@ -42,27 +44,34 @@ app.get("/help", (req, res) => {
   });
 });
 
-app.get("/weather", (req, res) => {
-  res.status(200).send({
-    forcast: -5,
-    location: "Stockholm",
+app.get("/weather", ({ query }, res) => {
+  if (!query.address) {
+    return res.send({
+      error: "No Address was provided",
+    });
+  }
+  gecode(query.address, (error, { longitude, latitude, location } = {}) => {
+    if (error) {
+      console.log(error);
+      return res.send(error);
+    }
+    forecast(longitude, latitude, (error, forecastData) => {});
   });
 });
 
 app.get("/help/*", (req, res) => {
-  res.render("page404",{
-    title:"Page not found",
-    message:"404 Help artical not found!",
-    name
-  })
-
+  res.render("page404", {
+    title: "Page not found",
+    message: "404 Help artical not found!",
+    name,
+  });
 });
 app.get("*", (req, res) => {
-  res.render("page404",{
-    title:"Page not found",
-    message:"404 page not found!",
-    name
-  })
+  res.render("page404", {
+    title: "Page not found",
+    message: "404 page not found!",
+    name,
+  });
 });
 
 app.listen(PORT, () => console.log("Server listening on port " + PORT));
