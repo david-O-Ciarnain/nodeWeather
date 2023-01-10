@@ -109,14 +109,20 @@ main form > input {
   border-radius: 20px;
   border: none;
   width: 35%;
+  height: 2em;
+  max-height: 30px;
   max-width: 350px;
   text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 main form > button {
   border-radius: 20px;
+  height: 2em;
+  max-height: 30px;
   border: none;
   cursor: pointer;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 main form > button:hover,
 main form > input:hover {
@@ -125,11 +131,27 @@ main form > input:hover {
 }
 
 #weather-data-container {
-}
-
-#weather-data-img {
+  background-image: url("/img/weather.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding-top: 200px;
 }
 
 #weather-data {
+  margin: 0 auto;
+  border-radius: 20px;
+  height: 50%;
+  width: 50%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+
+  line-height: 2em;
+  color: #fff;
   background-color: rgba(0, 0, 0, 0.5);
 }

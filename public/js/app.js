@@ -1,6 +1,6 @@
 const weatherForm = document.querySelector("form");
 const search = document.querySelector("input");
-const bodyElemnt = document.querySelector("body");
+const mainElemnt = document.querySelector("#weather-data");
 let locations = document.querySelector("#message-4");
 let descriptions = document.querySelector("#message-1");
 let temperatures = document.querySelector("#message-2");
@@ -26,10 +26,10 @@ weatherForm.addEventListener("submit", (event) => {
       } else {
         const { description, temperature, feelslike } =
           data["forecast"]["weather"];
-    
+
         weatherIcon.src = data["forecast"].weatherIcons;
 
-        bodyElemnt.appendChild(weatherIcon);
+        mainElemnt.appendChild(weatherIcon);
         locations.textContent = data.location;
         descriptions.textContent = description;
         temperatures.textContent = temperature;
