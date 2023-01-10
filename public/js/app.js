@@ -28,7 +28,7 @@ weatherForm.addEventListener("submit", (event) => {
           data["forecast"]["weather"];
     
         weatherIcon.src = data["forecast"].weatherIcons;
-        
+
         bodyElemnt.appendChild(weatherIcon);
         locations.textContent = data.location;
         descriptions.textContent = description;
