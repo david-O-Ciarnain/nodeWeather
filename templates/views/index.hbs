@@ -9,10 +9,17 @@
   </head>
   <body>
     {{>navbar}}
+    <main>
+      <p>Use this site to get your weather!</p>
     <form >
         <input id="location" type="text" placeholder="Your Location">
       <button onclick="">Search</button>
     </form>
+    <section>
+      <p id="message-1"></p>
+      <p id="message-2"></p>
+    </section>
+    </main>
     {{>footer}}
 
 <script src="/js/app.js" defer></script>

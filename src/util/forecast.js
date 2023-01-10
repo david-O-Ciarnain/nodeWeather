@@ -22,8 +22,8 @@ exports.forecast = function forecast(longitude, latitude, callback) {
       } = body.current;
 
       callback(undefined, {
-        forecast: {
-          Description:weatherDescriptions[0],
+        weather: {
+          description:weatherDescriptions[0],
           temperature: `Temperature: ${temperature} degrees.`,
           feelslike: `Feelslike: ${feelslike} degrees.`,
         },
