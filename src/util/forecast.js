@@ -22,7 +22,7 @@ exports.forecast = function forecast(longitude, latitude, callback) {
 
       callback(
         undefined,
-        `Description: ${weatherDescriptions[0]}\n Temperature: ${temperature}\n Feelslike: ${feelslike}`
+        `${weatherDescriptions[0]} Temperature: ${temperature} Celsius Feelslike: ${feelslike} Celsius`
       );
     }
   });

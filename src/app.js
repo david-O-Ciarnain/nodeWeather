@@ -1,8 +1,8 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
-const forecast = require("./util/forecast");
-const gecode = require("./util/gecode");
+const { forecast } = require("./util/forecast");
+const { gecode } = require("./util/gecode");
 
 const app = express();
 const PORT = 3000;
@@ -46,28 +46,39 @@ app.get("/help", (req, res) => {
 
 app.get("/weather", ({ query }, res) => {
   if (!query.address) {
-    return res.send({
+    return res.status(400).send({
       error: "No Address was provided",
     });
   }
-  gecode(query.address, (error, { longitude, latitude, location } = {}) => {
+  gecode(query.address, (error, { longitude, latitude, location }) => {
     if (error) {
       console.log(error);
       return res.send(error);
     }
-    forecast(longitude, latitude, (error, forecastData) => {});
+    forecast(longitude, latitude, (error, forecastData) => {
+      if (error) {
+        console.log(error);
+        return res.send(error);
+      }
+
+      res.status(200).send({
+        forecast: forecastData,
+        location,
+        address: query.address,
+      });
+    });
   });
 });
 
 app.get("/help/*", (req, res) => {
-  res.render("page404", {
+  res.status(404).render("page404", {
     title: "Page not found",
     message: "404 Help artical not found!",
     name,
   });
 });
 app.get("*", (req, res) => {
-  res.render("page404", {
+  res.status(404).render("page404", {
     title: "Page not found",
     message: "404 page not found!",
     name,
