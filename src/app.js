@@ -50,7 +50,7 @@ app.get("/weather", ({ query }, res) => {
       error: "No Address was provided",
     });
   }
-  gecode(query.address, (error, { longitude, latitude, location }) => {
+  gecode(query.address, (error, { longitude, latitude, location} = {}) => {
     if (error) {
       console.log(error);
       return res.send(error);

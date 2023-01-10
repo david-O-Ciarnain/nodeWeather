@@ -18,12 +18,17 @@ exports.forecast = function forecast(longitude, latitude, callback) {
         temperature,
         feelslike,
         weather_descriptions: weatherDescriptions,
+        weather_icons: weatherIcons,
       } = body.current;
 
-      callback(
-        undefined,
-        `${weatherDescriptions[0]} Temperature: ${temperature} Celsius Feelslike: ${feelslike} Celsius`
-      );
+      callback(undefined, {
+        forecast: {
+          Description:weatherDescriptions[0],
+          temperature: `Temperature: ${temperature} degrees.`,
+          feelslike: `Feelslike: ${feelslike} degrees.`,
+        },
+        weatherIcons: weatherIcons[0],
+      });
     }
   });
 };
