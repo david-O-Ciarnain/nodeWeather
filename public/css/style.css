@@ -6,7 +6,7 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
   overflow: hidden;
-  color: beige;
+  color: #fff;
   background-color: #979797;
 }
 
@@ -30,7 +30,7 @@ nav h1 {
 nav a {
   text-decoration: none;
   padding-left: 10px;
-  color: beige;
+  color: #fff;
 }
 
 nav a:hover {
